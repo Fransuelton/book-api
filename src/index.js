@@ -78,4 +78,18 @@ app.get("/books/:id", (request, response) => {
   return response.json(findBook);
 });
 
+app.delete("/users/:id", (request, response) => {
+  const { id } = request.params;
+
+  const user = users.findIndex((user) => user.id === id);
+
+  if (!user) {
+    return response.status(400).json("User not found");
+  }
+
+  users.splice(user, 1);
+
+  return response.json(users);
+});
+
 app.listen(3333, () => console.log("Server is running"));
