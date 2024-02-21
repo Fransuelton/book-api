@@ -7,6 +7,20 @@ app.use(express.json());
 const users = [];
 const books = [];
 
+function verifyUser(request, response, next) {
+  const { email } = request.headers;
+
+  const emailAlreadyExists = users.find((user) => user.email === email);
+
+  if (!emailAlreadyExists) {
+    return response.status(400).json({ error: "User not found" });
+  }
+
+  request.user = emailAlreadyExists;
+
+  return next();
+}
+
 app.post("/users", (request, response) => {
   const { name, email } = request.body;
 
@@ -33,7 +47,7 @@ function stringFormatted(string) {
   return string.trim().toLowerCase();
 }
 
-app.post("/books", (request, response) => {
+app.post("/books", verifyUser, (request, response) => {
   const { name, author, company, description, user_id } = request.body;
 
   const booksAlreadyExists = books.find(
@@ -58,7 +72,7 @@ app.post("/books", (request, response) => {
   return response.status(201).json({ message: "OK" });
 });
 
-app.put("/users/:id", (request, response) => {
+app.put("/users/:id", verifyUser, (request, response) => {
   const { id } = request.params;
   const { name } = request.body;
 
@@ -78,7 +92,7 @@ app.get("/books/:id", (request, response) => {
   return response.json(findBook);
 });
 
-app.delete("/users/:id", (request, response) => {
+app.delete("/users/:id", verifyUser, (request, response) => {
   const { id } = request.params;
 
   const user = users.findIndex((user) => user.id === id);
