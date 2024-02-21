@@ -24,4 +24,8 @@ app.post("/users", (request, response) => {
   return response.status(201).json({ message: "OK" });
 });
 
+app.get("/getUsers", (request, response) => {
+  return response.status(200).json(users);
+});
+
 app.listen(3333, () => console.log("Server is running"));
