@@ -9,6 +9,12 @@ const users = [];
 app.post("/users", (request, response) => {
   const { name, email } = request.body;
 
+  const emailAlreadyExists = users.some((user) => user.email === email);
+
+  if (emailAlreadyExists) {
+    return response.status(400).json({ error: "User already exists." });
+  }
+
   users.push({
     name,
     email,
