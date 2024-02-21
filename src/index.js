@@ -44,4 +44,14 @@ app.post("/books", (request, response) => {
   return response.status(201).json({ message: "OK" });
 });
 
+app.put("/users/:id", (request, response) => {
+  const { id } = request.params;
+  const { name } = request.body;
+
+  const findUser = users.find((user) => user.id === id);
+
+  findUser.name = name;
+  return response.json(users);
+});
+
 app.listen(3333, () => console.log("Server is running"));
