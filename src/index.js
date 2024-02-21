@@ -29,8 +29,22 @@ app.get("/getUsers", (request, response) => {
   return response.status(200).json(users);
 });
 
+function stringFormatted(string) {
+  return string.trim().toLowerCase();
+}
+
 app.post("/books", (request, response) => {
   const { name, author, company, description, user_id } = request.body;
+
+  const booksAlreadyExists = books.find(
+    (book) =>
+      book.user_id === user_id &&
+      stringFormatted(book.name) === stringFormatted(name)
+  );
+
+  if (booksAlreadyExists) {
+    return response.status(400).json({ error: "Book already exists" });
+  }
 
   books.push({
     name,
