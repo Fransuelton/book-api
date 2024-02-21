@@ -54,4 +54,14 @@ app.put("/users/:id", (request, response) => {
   return response.json(users);
 });
 
+app.get("/books/:id", (request, response) => {
+  const { id } = request.params;
+
+  const findBook = books.filter((book) => {
+    return book.user_id === id;
+  });
+
+  return response.json(findBook);
+});
+
 app.listen(3333, () => console.log("Server is running"));
