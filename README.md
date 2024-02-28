@@ -1,13 +1,20 @@
 # BookAPI
+![GitHub repo size](https://img.shields.io/github/repo-size/Fransuelton/book-api?style=)
+![Npm version](https://img.shields.io/static/v1?label=npm&message=v10.1.0&logo=npm&color=blue)
+![GitHub language count](https://img.shields.io/github/languages/count/Fransuelton/book-api?style=)
+![GitHub license](https://img.shields.io/github/license/Fransuelton/book-api)
+![GitHub last commit](https://img.shields.io/github/last-commit/Fransuelton/book-api)
+
 Esta API Rest utiliza tecnologias como Node.js e Express junto com pacotes como o UUID para criar números de indentificação únicos aos usuários é também o Nodemon que é usado na hora de fazer alterações no projeto, reiniciando o projeto automaticamente.
 
 Incluindo também um Middleware de verificação de usuário que está nas rotas que exigem autenticação de usuário, garantindo que apenas usuários autenticados possam acessar esses endpoints e realizar as operações que envolvem dados específicos.
 
-[![My Skills](https://skillicons.dev/icons?i=js,nodejs,express,npm,)](https://skillicons.dev)
-
 ## Funcionalidade
 
 - Esse sistema permite aos usuários cadastrados adicionar novos livros com informações como nome, autor, editora e descrição. É também listar livros e deletar.
+
+## Tecnologias utilizadas
+[![My Skills](https://skillicons.dev/icons?i=js,nodejs,express)](https://skillicons.dev)
 
 ## Requisitos Funcionais
 
