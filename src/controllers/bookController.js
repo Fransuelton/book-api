@@ -40,7 +40,13 @@ export const getUserBooks = (request, response) => {
     return book.user_id === id;
   });
 
-  return response.json(findBook);
+  return response.status(200).json({
+    success: true,
+    books: findBook,
+    message: findBook.length
+      ? "Books retrieved successfully."
+      : "No books found for this user.",
+  });
 };
 
 export const deleteBook = (request, response) => {
