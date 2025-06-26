@@ -1,150 +1,194 @@
-# BookAPI
-![GitHub repo size](https://img.shields.io/github/repo-size/Fransuelton/book-api?style=)
-![Npm version](https://img.shields.io/static/v1?label=npm&message=v10.1.0&logo=npm&color=blue)
-![GitHub language count](https://img.shields.io/github/languages/count/Fransuelton/book-api?style=)
-![GitHub license](https://img.shields.io/github/license/Fransuelton/book-api)
-![GitHub last commit](https://img.shields.io/github/last-commit/Fransuelton/book-api)
+# 🚀 BookManager API
 
-Esta API Rest utiliza tecnologias como Node.js e Express junto com pacotes como o UUID para criar números de indentificação únicos aos usuários é também o Nodemon que é usado na hora de fazer alterações no projeto, reiniciando o projeto automaticamente.
+![GitHub last commit](https://img.shields.io/github/last-commit/Fransuelton/api-book?color=blue)
+![GitHub repo size](https://img.shields.io/github/repo-size/Fransuelton/api-book)
+![GitHub issues](https://img.shields.io/github/issues/Fransuelton/api-book)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/Fransuelton/api-book)
+![GitHub License](https://img.shields.io/github/license/Fransuelton/bookmanager-api)
+![Project Status](https://img.shields.io/badge/status-in%20progress-yellow)
+![Project Type](https://img.shields.io/badge/type-api-blue)
 
-Incluindo também um Middleware de verificação de usuário que está nas rotas que exigem autenticação de usuário, garantindo que apenas usuários autenticados possam acessar esses endpoints e realizar as operações que envolvem dados específicos.
+📌 A simple REST API for managing users and books. Allows user registration, book registration linked to users, and book listing by user. Designed as a foundation for future features like book search, login, or wishlist functionality.
 
-## Funcionalidade
+---
 
-- Esse sistema permite aos usuários cadastrados adicionar novos livros com informações como nome, autor, editora e descrição. É também listar livros e deletar.
+## 📚 Table of Contents
 
-## Tecnologias utilizadas
+- [🚀 BookManager API](#-bookmanager-api)
+  - [📚 Table of Contents](#-table-of-contents)
+  - [📝 About](#-about)
+  - [✨ Features](#-features)
+    - [💼 Business Rules](#-business-rules)
+  - [🧰 Tech Stack](#-tech-stack)
+  - [🚀 Getting Started](#-getting-started)
+    - [📋 Prerequisites](#-prerequisites)
+    - [🔧 Installation](#-installation)
+  - [🔌 API Documentation](#-api-documentation)
+    - [Example Endpoints:](#example-endpoints)
+  - [📁 Folder Structure](#-folder-structure)
+  - [🎯 What I Learned](#-what-i-learned)
+  - [📄 License](#-license)
+  - [📬 Contact](#-contact)
+
+---
+
+## 📝 About
+
+This project is a backend API developed as a practical exercise with Node.js and Express. Its current focus is basic user and book management, serving as the foundation for future catalog, search, or book management applications.
+
+---
+
+## ✨ Features
+
+- 👤 User registration and listing  
+- 📚 Book registration linked to users  
+- 🔍 Book listing by user  
+- 🧱 Modular structure with Controllers, Middlewares, and Routers  
+- 🚀 Code ready for future authentication and feature expansion  
+
+### 💼 Business Rules
+
+- It is not possible to register a user with an existing email
+- It is not possible to register the same book
+- It is not possible to delete a non-existent account
+- It is not possible to delete a non-existent book
+
+---
+
+## 🧰 Tech Stack
+
 [![My Skills](https://skillicons.dev/icons?i=js,nodejs,express)](https://skillicons.dev)
 
-## Requisitos Funcionais
+- **Backend:** Node.js / Express.js  
+- **Language:** JavaScript (ES Modules)  
+- **Other:** UUID for unique ID generation  
 
-- [x] Cadastro de usuário
-- [x] Cadastro de livro
-- [x] Listagem de livros do usuário
-- [x] Atualizar usuário
-- [x] Deletar livro
-- [x] Deletar usuário
+---
 
-## Regras de negócio
+## 🚀 Getting Started
 
-- Não é possível cadastrar um usuário com email já existente
-- Não é possível cadastrar mesmo livro
-- Não é possível deletar uma conta inexistente
-- Não é possível deletar um livro inexistente
+### 📋 Prerequisites
 
-## Instalação
+- Node.js >= 18.x  
+- npm  
+- Git  
 
-1. Clone o repositório:
+### 🔧 Installation
 
-    ```
-    git clone https://github.com/Fransuelton/book-api.git
-    ```
+```bash
+# Clone the repository
+git clone git@github.com:Fransuelton/api-book.git
 
-2. Instale as dependências:
+# Navigate to the project folder
+cd api-book
 
-    ```
-    npm install
-    ```
-    
-2. Inicie o servidor utilizando o nodemon:
+# Install dependencies
+npm install
 
-    ```
-    npm run dev
-    ```
+# Start the server
+npm run dev
+```
 
-## Endpoints
+---
 
-## Endpoints com Middleware de Verificação de Usuário
+## 🔌 API Documentation
 
-Os seguintes endpoints requerem autenticação de usuário e utilizam o middleware de verificação de usuário:
+- Base URL: `http://localhost:3333`
 
-- **POST /books**: Adicionar um novo livro associado a um usuário autenticado.
-- **PUT /users/:id**: Atualizar os dados de um usuário autenticado.
-- **DELETE /users/:id**: Excluir a conta de um usuário autenticado.
+### Example Endpoints:
 
-### Criar Usuário
-<hr>
-
-**URL:** `/users`
-
-**Método:** `POST`
-
-**Corpo da Requisição:**
+```http
+POST /users
+```
+Registers a new user.  
+Request Body:
 ```json
 {
-  "name": "Nome do Usuário",
-  "email": "email@example.com"
+  "name": "John Doe",
+  "email": "john@example.com"
 }
 ```
 
-### Obter Todos os Usuários
-<hr>
+---
 
-**URL:** `/getUsers`
+```http
+GET /users
+```
+Returns a list of all registered users.
 
-**Método:** `GET`
+---
 
-### Adicionar Livro
-<hr>
-
-**URL:** `/books`
-
-**Método:** `POST`
-
-**Corpo da Requisição:**
+```http
+POST /books
+```
+Registers a book for an authenticated user (simulated with email header).  
+Headers:
+```http
+email: john@example.com
+```
+Request Body:
 ```json
 {
-  "name": "Nome do Livro",
-  "author": "Autor do Livro",
-  "company": "Editora do Livro",
-  "description": "Descrição do Livro",
-  "user_id": "ID do Usuário"
+  "name": "Book Title",
+  "author": "Author Name",
+  "company": "Publisher",
+  "description": "Book description",
+  "user_id": "user-uuid"
 }
 ```
 
-### Atualizar Dados do Usuário
-<hr>
+---
 
-**URL:** `/users/:id`
+```http
+GET /books/:user_id
+```
+Returns all books linked to a specific user.
 
-**Método:** `PUT`
+---
 
-**Parâmetros da URL:** `id` (ID do Usuário)
+## 📁 Folder Structure
 
-**Corpo da Requisição:**
-```json
-{
-  "name": "Novo Nome do Usuário"
-}
+```bash
+api-book/
+├── src/
+│   ├── controllers/
+│   ├── data/
+│   ├── middlewares/
+│   ├── routes/
+│   ├── app.js
+│   └── server.js
+├── .gitignore
+├── package.json
+└── README.md
 ```
 
-### Obter Livros de um Usuário
-<hr>
+---
 
-**URL:** `/books/:id`
+## 🎯 What I Learned
 
-**Método:** `GET`
+During the development of this project, I practiced key backend development concepts:  
 
-**Parâmetros da URL:** `id` (ID do Usuário)
+- API organization using Controllers, Middlewares, and Routers  
+- Best practices with Express.js  
+- Separation of data simulating future database integration  
+- First steps for building fullstack projects with Node.js  
 
-### Excluir Usuário
-<hr>
+---
 
-**URL:** `/users/:id`
+## 📄 License
 
-**Método:** `DELETE`
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
 
-**Parâmetros da URL:** `id` (ID do Usuário)
+---
 
-### Excluir Livro
-<hr>
+## 📬 Contact
 
-**URL:** `/books/:id`
+**Fransuelton Francisco**  
+📫 contato@fransuelton.dev  
+🌐 [fransuelton.dev](https://fransuelton.dev)  
+🐙 [github.com/Fransuelton](https://github.com/Fransuelton)  
+💼 [linkedin.com/in/fransuelton](https://www.linkedin.com/in/fransuelton)  
 
-**Método:** `DELETE`
+---
 
-**Parâmetros da URL:** `id` (ID do Livro)
-
-## Contribuição
-
-Contribuições são bem-vindas! Se você encontrou um bug, tem uma ideia para uma nova funcionalidade ou quer melhorar a documentação, sinta-se à vontade para abrir uma issue ou enviar um pull request.
+⭐️ If you found this project useful or are learning from it, please consider leaving a star!
