@@ -1,6 +1,6 @@
+import { books } from "../data/data.js";
+import { v4 as uuidv4 } from "uuid";
 import { stringFormatted } from "../utils/stringFormatted.js";
-
-const books = [];
 
 export const createBook = (request, response) => {
   const { name, author, company, description, user_id } = request.body;
@@ -20,7 +20,7 @@ export const createBook = (request, response) => {
     author,
     company,
     description,
-    Id: uuid(),
+    Id: uuidv4(),
     user_id,
   });
 
