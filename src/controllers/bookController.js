@@ -12,7 +12,10 @@ export const createBook = (request, response) => {
   );
 
   if (booksAlreadyExists) {
-    return response.status(400).json({ error: "Book already exists" });
+    return response.status(400).json({
+      success: false,
+      error: "Book with this name already exists for this user.",
+    });
   }
 
   books.push({
@@ -24,7 +27,10 @@ export const createBook = (request, response) => {
     user_id,
   });
 
-  return response.status(201).json({ message: "OK" });
+  return response.status(201).json({
+    success: true,
+    message: "Book created successfully.",
+  });
 };
 
 export const getUserBooks = (request, response) => {
@@ -43,7 +49,10 @@ export const deleteBook = (request, response) => {
   const book = books.findIndex((book) => book.id === id);
 
   if (!book) {
-    return response.status(400).json("Book not found");
+    return response.status(404).json({
+      success: false,
+      error: "Book not found.",
+    });
   }
 
   books.splice(book, 1);
