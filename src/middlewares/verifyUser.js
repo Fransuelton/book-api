@@ -1,3 +1,5 @@
+import { users } from "../data/data.js";
+
 export function verifyUser(request, response, next) {
   const { email } = request.headers;
 
