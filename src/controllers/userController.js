@@ -1,6 +1,5 @@
+import { users } from "../data/data.js";
 import { v4 as uuidv4 } from "uuid";
-
-const users = [];
 
 export const createUser = (request, response) => {
   const { name, email } = request.body;
