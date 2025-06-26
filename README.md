@@ -4,7 +4,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/Fransuelton/api-book)
 ![GitHub issues](https://img.shields.io/github/issues/Fransuelton/api-book)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Fransuelton/api-book)
-![GitHub License](https://img.shields.io/github/license/Fransuelton/bookmanager-api)
+![GitHub License](https://img.shields.io/github/license/Fransuelton/api-book)
 ![Project Status](https://img.shields.io/badge/status-in%20progress-yellow)
 ![Project Type](https://img.shields.io/badge/type-api-blue)
 
