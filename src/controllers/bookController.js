@@ -20,7 +20,7 @@ export const createBook = (request, response) => {
     author,
     company,
     description,
-    Id: uuidv4(),
+    id: uuidv4(),
     user_id,
   });
 
